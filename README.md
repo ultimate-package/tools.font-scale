@@ -16,7 +16,13 @@ h1 {
 }
 ```
 
+### Installation
 
+This module can be installed as a bower package like so:
+
+```
+bower install ult-font-scale
+```
 
 ### Setting the typographic scale
 
