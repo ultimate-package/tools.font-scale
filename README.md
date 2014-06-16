@@ -6,7 +6,7 @@ A series of mixins and functions to set font-size, line-height and font-family v
 ```scss
 //scss
 h1 {
-	@include font-scale(helvetica, large);
+	@include font-scale(large, helvetica);
 }
 
 //css output
@@ -24,14 +24,26 @@ This module can be installed as a bower package like so:
 bower install ult-font-scale
 ```
 
-### Setting the typographic scale
+In your main `.scss` file you’ll need to add the default base font size and the set the `supports` map to convert all of the units to rems: 
 
-First the scale must be set in an alternative configuration file in a Sass map, with each specific font being made into its own map as well:
+```
+$supports: (rem: true);
+$font-base-size: 16;
+```
+
+Then import the `rem-calc` and the `font-scale` tool that’s a dependency:
+
+```
+@import "bower_components/ult-font-scale/font-scale";
+@import "bower_components/ult-rem-calc/rem-calc";
+```
+
+Once that’s done we’ll need to set our typographic scale map. Usually I’d do this in another Sass partial like `font-scale.scss`:
 
 ```scss
 $fonts: (
-    helvetica: (
-        base: (
+	helvetica: (
+		base: (
             font-size: 16,
             line-height: 20
         ),
@@ -54,10 +66,28 @@ $fonts: (
 );
 ```
 
+Finally we can use the mixins like so:
+
+```scss
+h1 {
+	@include font-scale(large, helvetica);
+}
+```
+
+And that should export to something like this in CSS:
+
+```css
+h1 {
+	font-size: 2.1875rem;
+	line-height: 2.5rem;
+}
+```
 
 
 
-### Setting fonts with separate font files for each weight
+### Optional configuration settings
+
+#### Setting fonts with separate font files for each weight
 
 Some typefaces require specific fonts for certain weights in which case we can set the `family-per-weight` value to true:
 
