@@ -1,22 +1,33 @@
 Font scale tool
 ================
 
-A series of mixins and functions to set font-size, line-height and font-family values from a typographic scale. For more information check the [original post](http://erskinedesign.com/blog/setting-typographic-scale-with-sass-maps/) on the subject.
+Mixins for accessing a typographic scale from a Sass map. For more information check the [original post](http://erskinedesign.com/blog/setting-typographic-scale-with-sass-maps/) on the subject.
+
+Here’s an example of how you might use this tool in a real project:
 
 ```scss
 //scss
 h1 {
-	@include font-scale(large, helvetica);
+	@include font-scale(base, helvetica);
+
+    @media screen and and (min-device-width : 320px) {
+        @include font-scale(large, helvetica);
+    }
 }
 
 //css output
 h1 {
-	font-size: 35px;
-	line-height: 40px;
+	font-size: 16px;
+	line-height: 20px;
+
+    @media screen and and (min-device-width : 320px) {
+        font-size: 35px;
+        line-height: 40px;
+    }
 }
 ```
 
-### Installation
+## Installation
 
 This module can be installed as a bower package like so:
 
@@ -24,21 +35,21 @@ This module can be installed as a bower package like so:
 bower install ult-font-scale
 ```
 
-In your main `.scss` file you’ll need to add the default base font size and the set the `supports` map to convert all of the units to rems: 
+In your main `.scss` file you’ll need to add a base font size which will be used to calculate the output rem values. After that you’ll want to add a `supports` map to convert all of the units to rems: 
 
 ```
-$supports: (rem: true);
 $font-base-size: 16;
+$supports: (rem: true);
 ```
 
-Then import the `rem-calc` and the `font-scale` tool that’s a dependency:
+Then you have to import the `font-scale` and `rem-calc` tool which also happens to be a dependency if you want rem values:
 
 ```
 @import "bower_components/ult-font-scale/font-scale";
 @import "bower_components/ult-rem-calc/rem-calc";
 ```
 
-Once that’s done we’ll need to set our typographic scale map. Usually I’d do this in another Sass partial like `font-scale.scss`:
+Once that’s done we’ll need to set our typographic scale as a Sass map. Usually I’d do this in another partial like `font-scale.scss` and import it back into the main Sass file:
 
 ```scss
 $fonts: (
@@ -66,7 +77,7 @@ $fonts: (
 );
 ```
 
-Finally we can use the mixins like so:
+With all that data in place we can finally use the mixins like so:
 
 ```scss
 h1 {
