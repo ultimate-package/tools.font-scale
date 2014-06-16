@@ -11,7 +11,7 @@
     "scss"
   ],
   "dependencies": {
-    "ult-rem-calc" : "1.0.0"
+    "ult-rem-calc" : "1.0.1"
   },
   "license": "MIT",
   "ignore": [
