@@ -10,7 +10,7 @@ Here’s an example of how you might use this tool in a real project:
 h1 {
 	@include font-scale(base, helvetica);
 
-    @media screen and and (min-device-width : 320px) {
+    @media screen and (min-device-width : 320px) {
         @include font-scale(large, helvetica);
     }
 }
@@ -20,7 +20,7 @@ h1 {
 	font-size: 16px;
 	line-height: 20px;
 
-    @media screen and and (min-device-width : 320px) {
+    @media screen and (min-device-width : 320px) {
         font-size: 35px;
         line-height: 40px;
     }
